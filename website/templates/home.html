@@ -1,0 +1,33 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %}
+{% block content %}
+<h1 align="center">Notes</h1>
+<ul class="list-group list-group-flush" id="notes">
+
+    {% for note in user.notes %}
+    <li class="list-group-item">
+        {{ note.data }}
+
+        <div align="right">
+            <small ><i> Date Added: {{ note.date }} </i></small>
+
+        <a href="{{ url_for('views.update_note', note_id=note.id) }}">Edit</a>
+        <a href="{{ url_for('views.delete_note', note_id=note.id) }}">Delete</a>
+
+        </div>
+
+
+    </li>
+
+    {% endfor %}
+</ul>
+<br />
+<form method="POST">
+    <textarea name="note" id="note" class="form-control" placeholder = "Enter note here" rows="5"></textarea>
+    <br />
+    <div align="center">
+        <button type="submit" class="btn btn-primary">Add Note</button>
+    </div>
+</form>
+{% endblock %}
+
+
